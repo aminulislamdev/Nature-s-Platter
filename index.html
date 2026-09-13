@@ -50,7 +50,8 @@
       </div>
 
       <!-- Mobile hamburger -->
-      <button id="menu-btn" class="lg:hidden text-2xl" aria-label="Toggle menu">
+      <button id="menu-btn" class="lg:hidden text-2xl" aria-label="Toggle menu" aria-expanded="false"
+        aria-controls="mobile-menu">
         <i class="fa-solid fa-bars"></i>
       </button>
     </nav>
@@ -278,15 +279,17 @@
   </main>
 
 
-  <footer class="relative mt-35.5 bg-[#119900]">
+  <footer class="relative mt-0 md:mt-35.5 bg-[#119900]">
 
     <!-- =========================
          NEWSLETTER CARD
     ========================== -->
 
-    <section class="absolute left-1/2 -translate-x-1/2
-               -top-35.5
-               w-[calc(100%-32px)]
+    <section class="relative md:absolute md:left-1/2 md:-translate-x-1/2
+               md:-top-35.5
+               w-full md:w-[calc(100%-32px)]
+               px-4 md:px-0
+               pt-6 md:pt-0
               container">
 
       <div class="bg-[#f3f0e9]
@@ -320,7 +323,7 @@
             <p class="text-[13px]
                                text-gray-700
                                mt-3
-                               whitespace-nowrap">
+                               whitespace-normal sm:whitespace-nowrap">
               Exclusive training tips, ticks, product deals and more.
             </p>
 
@@ -371,14 +374,15 @@
     <div class="container
                mx-auto
                px-6
-               pt-56.25
-               pb-21.25">
+               pt-8 md:pt-56.25
+               pb-16 sm:pb-21.25">
 
       <div class="grid
                    grid-cols-1
                    md:grid-cols-[1.4fr_1fr_1fr]
-                   gap-12
-                   items-start">
+                   gap-8 md:gap-12
+                   items-start
+                   text-center md:text-left">
 
         <!-- =========================
                  LOGO
@@ -391,6 +395,7 @@
 
           <p class="mt-3
                            max-w-60
+                           mx-auto md:mx-0
                            text-[13px]
                            leading-4.25
                            text-white/90">
@@ -447,7 +452,7 @@
             Follow Us
           </p>
 
-          <div class="flex items-center gap-5">
+          <div class="flex items-center justify-center md:justify-start gap-5">
 
             <!-- Facebook -->
             <a href="#" aria-label="Facebook" class="text-white
@@ -493,6 +498,44 @@
     </div>
 
   </footer>
+
+  <!-- =========================
+           MOBILE MENU SCRIPT
+      ========================== -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = menuBtn.querySelector('i');
+
+    function openMenu() {
+      mobileMenu.classList.remove('hidden');
+      menuBtn.setAttribute('aria-expanded', 'true');
+      menuIcon.classList.remove('fa-bars');
+      menuIcon.classList.add('fa-xmark');
+    }
+
+    function closeMenu() {
+      mobileMenu.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuIcon.classList.remove('fa-xmark');
+      menuIcon.classList.add('fa-bars');
+    }
+
+    menuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      isHidden ? openMenu() : closeMenu();
+    });
+
+    // Close the menu after tapping a nav link
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close the menu when resizing back up to desktop width
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) closeMenu();
+    });
+  </script>
 </body>
 
 </html>
