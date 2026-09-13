@@ -48,7 +48,27 @@
         <button
           class="rounded-full py-2 px-6 bg-green-600 hover:bg-green-700 text-base font-medium text-white">Register</button>
       </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" class="lg:hidden text-2xl" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
     </nav>
+
+    <!-- Mobile menu panel -->
+    <div id="mobile-menu" class="hidden lg:hidden px-4 pb-4">
+      <ul class="flex flex-col gap-3 text-base font-medium">
+        <li><a href="#" class="block py-1">Product</a></li>
+        <li><a href="#" class="block py-1">Services</a></li>
+        <li><a href="#" class="block py-1">Contact us</a></li>
+      </ul>
+      <div class="flex gap-4 items-center mt-3">
+        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+        <span><i class="fa-solid fa-cart-shopping"></i></span>
+        <button class="border border-gray-300 rounded-full py-2 px-4 text-sm flex-1">Login</button>
+        <button class="rounded-full py-2 px-4 bg-green-600 text-white text-sm flex-1">Register</button>
+      </div>
+    </div>
   </header>
 </body>
 
